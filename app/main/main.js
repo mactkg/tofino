@@ -11,6 +11,8 @@ specific language governing permissions and limitations under the License.
 */
 
 /* eslint-disable strict */
+/* eslint no-console: 0 */
+
 'use strict';
 
 // Must go before any require statements.
@@ -21,14 +23,20 @@ require('babel-register')();
 
 const path = require('path');
 const electron = require('electron');
+
 const instrument = require('../services/instrument');
 const server = require('../services/server');
+const storage = require('../services/storage');
+
 const app = electron.app; // control application life.
 const BrowserWindow = electron.BrowserWindow;  // create native browser window.
+
 const BrowserMenu = require('./browser-menu').default;
 const isProduction = require('../../shared/util').isProduction;
+
 const ipc = electron.ipcMain;
 const globalShortcut = electron.globalShortcut;
+
 const electronLocalshortcut = require('electron-localshortcut');
 
 const root = path.dirname(__dirname);
@@ -130,6 +138,7 @@ app.on('ready', () => {
   });
   registerFileProtocol('libs', url => path.normalize(path.join(root, 'libs', url)));
 
+  storage.open('/tmp/foo.db');
   createWindow();
 });
 
