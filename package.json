@@ -8,7 +8,7 @@
     "dev": "node build/main.js --run-dev",
     "package": "node build/main.js --package",
     "test": "mocha",
-    "postinstall": "electron-rebuild"
+    "postinstall": "electron-rebuild -f"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -29,7 +29,8 @@
     "react-dom": "0.14.7",
     "react-redux": "4.4.1",
     "redux": "3.3.1",
-    "redux-logger": "2.6.1"
+    "redux-logger": "2.6.1",
+    "sqlite3": "^3.1.3"
   },
   "devDependencies": {
     "electron-packager": "5.2.1",
